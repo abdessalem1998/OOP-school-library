@@ -1,5 +1,13 @@
-class Nameable
+require './nameable'
+
+class Decorator < Nameable
+  attr_accessor :nameable
+
+  def initialize(nameable)
+    @nameable = nameable
+  end
+
   def correct_name
-    raise NotImplementedError
+    @nameable.correct_name
   end
 end
