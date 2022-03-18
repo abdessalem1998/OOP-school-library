@@ -26,15 +26,11 @@ Install [ruby](https://www.ruby-lang.org/en/)
 
 ### Setup
 
-N/A
-
-### Install
-
-N/A
-
-### Usage
-
 - run: `git clone https://github.com/abdessalem1998/OOP-school-library`
+
+- then: `ruby person`
+
+
 
 ### Deployment
 
