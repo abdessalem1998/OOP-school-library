@@ -1,3 +1,6 @@
+require './student.rb'
+require './teacher.rb'
+
 class App
   def initialize
     @people = []
@@ -10,11 +13,38 @@ class App
   end
 
   def list_people
-    puts 'list_people'
+    puts "No people found" if @people.empty?
+    puts(@people.map {|person| "#{person.class.name} Name: #{person.name}, Age: #{person.age}" })
   end
 
   def create_person
-    puts 'create_person'
+    print('Do you want to create a new student (1) or a new teacher? (2) [1/2]: ')
+    option = gets.chomp.to_i
+
+    unless [1, 2].include?(option)
+      puts "Invalid selection"
+      return
+    end
+
+    print('Age: ')
+    age = gets.chomp.to_i
+    print('Name: ')
+    name = gets.chomp
+
+    case option
+    when 1
+      print('Has parent permission? [y/n]: ')
+      permission = gets.chomp === 'y' ? true : false
+      student = Student.new(age, 'class', name, permission)
+      @people << student
+    when 2
+      print('Specialization: ')
+      specialization = gets.chomp
+      teacher = Teacher.new(age, specialization, name)
+      @people << teacher
+
+    end
+    puts "Person #{name} created successfully!"
   end
 
   def create_book
