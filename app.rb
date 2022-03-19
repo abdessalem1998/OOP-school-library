@@ -1,6 +1,7 @@
 require './student.rb'
 require './teacher.rb'
 require './book.rb'
+require './rental.rb'
 
 class App
   def initialize
@@ -37,7 +38,7 @@ class App
     when 1
       print('Has parent permission? [y/n]: ')
       permission = gets.chomp === 'y' ? true : false
-      student = Student.new(age, 'class', name, permission)
+      student = Student.new(name, 'class', age, permission)
       @people << student
     when 2
       print('Specialization: ')
@@ -61,11 +62,29 @@ class App
   end
 
   def create_rental
-    puts 'create_person'
+    puts "Select a book from the following list by its number:"
+    puts (@books.each_with_index.map {|book, index| "#{index + 1}) Title: #{book.title} Author: #{book.author}"})
+    book_index = gets.chomp.to_i
+
+    puts "Select a person from the following list by its number:"
+    puts (@people.each_with_index.map {|person, index| "#{index + 1}) #{person.class.name} name: #{person.name} ID: #{person.id} age: #{person.age}"})
+    person_index = gets.chomp.to_i
+
+    print "Date [YYYY/MM/DD]: "
+    date = gets.chomp
+
+    rental = Rental.new(date, @books[book_index - 1], @people[person_index - 1])
+
+    @rentals << rental
+    puts "Rental created successfully!"
+
   end
 
   def list_rentals
-    puts 'list_rentals'
+    print('Id of the person: ')
+    id = gets.chomp.to_i
+    person = @people.filter {|person| person.id == id}.first
+    puts(person.rentals.map { |rental| "Date: #{rental.date}, Book: #{rental.book.title}, by #{rental.book.author}" })
   end
 
   def print_start_message
