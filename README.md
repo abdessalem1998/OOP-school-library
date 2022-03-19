@@ -28,7 +28,7 @@ Install [ruby](https://www.ruby-lang.org/en/)
 
 - run: `git clone https://github.com/abdessalem1998/OOP-school-library`
 
-- then: `ruby person.rb`
+- then: `ruby main.rb`
 
 
 
