@@ -1,5 +1,6 @@
 require './student.rb'
 require './teacher.rb'
+require './book.rb'
 
 class App
   def initialize
@@ -9,7 +10,8 @@ class App
   end
 
   def list_books
-    puts 'list_books'
+    puts "No books found" if @books.empty?
+    puts(@books.map {|book| "Title #{book.title}, Author: #{book.author}" })
   end
 
   def list_people
@@ -48,7 +50,14 @@ class App
   end
 
   def create_book
-    puts 'create_person'
+    print('Book title: ')
+    title = gets.chomp
+    print('Author: ')
+    author = gets.chomp
+    book = Book.new(title, author)
+
+    @books << book
+    puts "Book created successfully!"
   end
 
   def create_rental
