@@ -4,43 +4,15 @@ require './teacher'
 require './book'
 require './rental'
 require './ListBooks'
-
+require './CreatePerson'
 require './CreateBooks'
+require './ListPeople'
 
 class App
   def initialize
     @people = []
     @books = []
     @rentals = []
-  end
-
-  def list_people
-    puts 'No people found' if @people.empty?
-    puts(@people.map { |person| "#{person.class.name} Name: #{person.name}, Age: #{person.age}, ID: #{person.id}" })
-  end
-
-  def create_person
-    option = get_promt('Do you want to create a new student (1) or a new teacher? (2) [1/2]: ').to_i
-
-    unless [1, 2].include?(option)
-      puts 'Invalid selection'
-      return
-    end
-
-    age = get_promt('Age: ')
-    name = get_promt('Name: ')
-
-    case option
-    when 1
-      permission = get_promt('Has parent permission? [y/n]:') == 'y'
-      student = Student.new(name, 'class', age, parent_permission: permission)
-      @people << student
-    when 2
-      specialization = get_promt('Specialization')
-      teacher = Teacher.new(age, specialization, name)
-      @people << teacher
-    end
-    puts "Person #{name} created successfully!"
   end
 
   def create_rental
@@ -86,9 +58,9 @@ class App
     when 1
       ListBooks.new(@books).display
     when 2
-      list_people
+      ListPeople.new(@people).list_people
     when 3
-      create_person
+      CreatePerson.new(@people).create_person
     when 4
       CreateBooks.new(@books).create
     when 5
