@@ -3,17 +3,14 @@ require './student'
 require './teacher'
 require './book'
 require './rental'
+require './ListBooks'
+require './CreateBooks'
 
 class App
   def initialize
     @people = []
     @books = []
     @rentals = []
-  end
-
-  def list_books
-    puts 'No books found' if @books.empty?
-    puts(@books.map { |book| "Title #{book.title}, Author: #{book.author}" })
   end
 
   def list_people
@@ -43,17 +40,6 @@ class App
       @people << teacher
     end
     puts "Person #{name} created successfully!"
-  end
-
-  def create_book
-    print('Book title: ')
-    title = gets.chomp
-    print('Author: ')
-    author = gets.chomp
-    book = Book.new(title, author)
-
-    @books << book
-    puts 'Book created successfully!'
   end
 
   def create_rental
@@ -97,13 +83,13 @@ class App
   def execute(option)
     case option
     when 1
-      list_books
+      ListBooks.new(@books).display
     when 2
       list_people
     when 3
       create_person
     when 4
-      create_book
+      CreateBooks.new(@books).create
     when 5
       create_rental
     when 6
