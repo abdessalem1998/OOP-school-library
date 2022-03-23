@@ -20,7 +20,7 @@ class CreatePerson
       student = Student.new(name, 'class', age, parent_permission: permission)
       @people << student
     when 2
-      specialization = get_promt('Specialization')
+      specialization = specialization = get_promt('Specialization: ')
       teacher = Teacher.new(age, specialization, name)
       @people << teacher
     end
