@@ -3,43 +3,18 @@ require './student'
 require './teacher'
 require './book'
 require './rental'
-require './ListBooks'
-require './CreatePerson'
-require './CreateBooks'
-require './ListPeople'
+require './list_books'
+require './create_person'
+require './create_books'
+require './list_people'
+require './create_rental'
+require './list_rentals'
 
 class App
   def initialize
     @people = []
     @books = []
     @rentals = []
-  end
-
-  def create_rental
-    puts 'Select a book from the following list by its number:'
-    puts(@books.each_with_index.map { |book, index| "#{index + 1}) Title: #{book.title} Author: #{book.author}" })
-    book_index = gets.chomp.to_i
-
-    puts 'Select a person from the following list by its number:'
-    puts(@people.each_with_index.map do |person, index|
-           "#{index + 1}) #{person.class.name} name: #{person.name} ID: #{person.id} age: #{person.age}"
-         end)
-    person_index = gets.chomp.to_i
-
-    print 'Date [YYYY/MM/DD]: '
-    date = gets.chomp
-
-    rental = Rental.new(date, @books[book_index - 1], @people[person_index - 1])
-
-    @rentals << rental
-    puts 'Rental created successfully!'
-  end
-
-  def list_rentals
-    print('Id of the person: ')
-    id = gets.chomp.to_i
-    person = @people.filter { |p| p.id == id }.first
-    puts(person.rentals.map { |rental| "Date: #{rental.date}, Book: #{rental.book.title}, by #{rental.book.author}" })
   end
 
   def print_start_message
@@ -64,9 +39,9 @@ class App
     when 4
       CreateBooks.new(@books).create
     when 5
-      create_rental
+      CreateRental.new(@rentals, @books, @people).create
     when 6
-      list_rentals
+      ListRentals.new(@rentals, @people).display
     end
   end
 

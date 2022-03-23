@@ -1,13 +1,14 @@
 class CreatePerson
-    def initialize(people)
-        @people = people
-    end
-    def create_person
-        option = get_promt('Do you want to create a new student (1) or a new teacher? (2) [1/2]: ').to_i
+  def initialize(people)
+    @people = people
+  end
 
-        unless [1, 2].include?(option)
-        puts 'Invalid selection'
-        return
+  def create_person
+    option = get_promt('Do you want to create a new student (1) or a new teacher? (2) [1/2]: ').to_i
+
+    unless [1, 2].include?(option)
+      puts 'Invalid selection'
+      return
     end
 
     age = get_promt('Age: ')
