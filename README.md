@@ -44,6 +44,12 @@ N/A
 - Twitter: [@Houfaf Abdessalem](https://twitter.com/HAbdssalem)
 - LInkedIn: [@Houfaf Abdessalem](https://www.linkedin.com/in/houfafabdessalem/)
 
+👤 **Victor Chukwuemeka**
+
+- GitHub: [@Victor](https://github.com/chukwuemeka1234/)
+- Twitter: [@Victor](https://twitter.com/@avc_victor)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/vic-chukwuemeka/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
