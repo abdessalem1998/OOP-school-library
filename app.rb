@@ -11,14 +11,12 @@ require './create_rental'
 require './list_rentals'
 require './save_retrive'
 
-require 'json'
-
 class App
 
   include SaveRetrive
 
   def initialize
-    @people = []
+    @people = retrieve_peoples
     @books = retrieve_books
     @rentals = retrieve_rentals
   end
@@ -41,9 +39,9 @@ class App
     when 2
       ListPeople.new(@people).list_people
     when 3
-      CreatePerson.new(@people).create_person
+      CreatePerson.new(@rentals, @books, @people).create_person
     when 4
-      CreateBooks.new(@books).create
+      CreateBooks.new(@rentals, @books, @people).create
     when 5
       CreateRental.new(@rentals, @books, @people).create
     when 6

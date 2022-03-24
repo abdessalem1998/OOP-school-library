@@ -3,8 +3,10 @@ require './save_retrive'
 class CreateBooks
   include SaveRetrive
 
-  def initialize(books)
+  def initialize(rentals, books, people)
+    @rentals = rentals
     @books = books
+    @people = people
   end
 
   def create

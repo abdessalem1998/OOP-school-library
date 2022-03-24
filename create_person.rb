@@ -1,5 +1,11 @@
+require './save_retrive'
+
 class CreatePerson
-  def initialize(people)
+  include SaveRetrive
+  
+  def initialize(rentals, books, people)
+    @rentals = rentals
+    @books = books
     @people = people
   end
 
@@ -24,6 +30,7 @@ class CreatePerson
       teacher = Teacher.new(age, specialization, name)
       @people << teacher
     end
+    save
     puts "Person #{name} created successfully!"
   end
 end
