@@ -9,12 +9,18 @@ require './create_books'
 require './list_people'
 require './create_rental'
 require './list_rentals'
+require './save_retrive'
+
+require 'json'
 
 class App
+
+  include SaveRetrive
+
   def initialize
     @people = []
-    @books = []
-    @rentals = []
+    @books = retrieve_books
+    @rentals = retrieve_rentals
   end
 
   def print_start_message

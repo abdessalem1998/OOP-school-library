@@ -1,4 +1,8 @@
+require './save_retrive'
+
 class CreateRental
+  include SaveRetrive
+
   def initialize(rentals, books, people)
     @rentals = rentals
     @books = books
@@ -22,6 +26,7 @@ class CreateRental
     rental = Rental.new(date, @books[book_index - 1], @people[person_index - 1])
 
     @rentals << rental
+    save
     puts 'Rental created successfully!'
   end
 end

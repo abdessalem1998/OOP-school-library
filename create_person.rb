@@ -17,7 +17,7 @@ class CreatePerson
     case option
     when 1
       permission = get_promt('Has parent permission? [y/n]:') == 'y'
-      student = Student.new(name, 'class', age, parent_permission: permission)
+      student = Student.new(name, 'class', permission, age)
       @people << student
     when 2
       specialization = get_promt('Specialization: ')
