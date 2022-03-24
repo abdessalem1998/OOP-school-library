@@ -53,6 +53,23 @@ module SaveRetrive
     end
   end
 
+  def retrieve_people
+    json = File.read('data/people.json')
+    if json.empty?
+      []
+    else
+      parsed_json = JSON.parse(json)
+      parsed_json.map do |people|
+        person = if people['person']['type'] == 'Student'
+          Student.new(people['person']['name'], 'class', people['person']['parent_permission'],people['person']['age'])
+        else
+          Teacher.new(people['person']['age'], people['person']['specialization'], people['person']['name'])
+        end
+        @people << person
+      end
+    end
+  end
+
   def save
     books_obj = @books.map do |book|
       { title: book.title, author: book.author }
@@ -85,5 +102,4 @@ module SaveRetrive
     file.puts(json)
     file.close
   end
-
 end
