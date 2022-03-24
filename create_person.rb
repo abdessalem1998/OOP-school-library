@@ -2,7 +2,7 @@ require './save_retrive'
 
 class CreatePerson
   include SaveRetrive
-  
+
   def initialize(rentals, books, people)
     @rentals = rentals
     @books = books

@@ -12,7 +12,6 @@ require './list_rentals'
 require './save_retrive'
 
 class App
-
   include SaveRetrive
 
   def initialize

@@ -1,6 +1,5 @@
 require 'json'
 module SaveRetrive
-
   def retrieve_books
     json = File.read('data/books.json')
     if json.empty?
@@ -22,7 +21,7 @@ module SaveRetrive
       parsed_json = JSON.parse(json)
       parsed_json.map do |person|
         if person['type'] == 'Student'
-          student = Student.new(person['age'],'class', person['parent_permission'],person['name'])
+          student = Student.new(person['age'], 'class', person['parent_permission'], person['name'])
           student.id = person['id']
           student
         else
@@ -42,7 +41,8 @@ module SaveRetrive
       parsed_json = JSON.parse(json)
       parsed_json.map do |rental|
         person = if rental['person']['type'] == 'Student'
-                   Student.new(rental['person']['age'],'class', rental['person']['parent_permission'],rental['person']['name'])
+                   Student.new(rental['person']['age'], 'class', rental['person']['parent_permission'],
+                               rental['person']['name'])
                  else
                    Teacher.new(rental['person']['age'], rental['person']['specialization'], rental['person']['name'])
                  end
@@ -53,6 +53,7 @@ module SaveRetrive
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
   def save
     books_obj = @books.map do |book|
       { title: book.title, author: book.author }
@@ -73,11 +74,18 @@ module SaveRetrive
     save_file('data/ppl.json', ppl_json)
 
     rentals_obj = @rentals.map do |rental|
-      { date: rental.date, person: { age: rental.person.age, name: rental.person.name,type:rental.person.type, id:rental.person.id, parent_permission:rental.person.parent_permission }, book: { title: rental.book.title, author: rental.book.author }}
+      { date: rental.date,
+        person: { age: rental.person.age,
+                  name: rental.person.name,
+                  type: rental.person.type,
+                  id: rental.person.id,
+                  parent_permission: rental.person.parent_permission },
+        book: { title: rental.book.title, author: rental.book.author } }
     end
     rentals_json = JSON.generate(rentals_obj)
     save_file('data/rentals.json', rentals_json)
   end
+  # rubocop:enable Metrics/MethodLength
 
   def save_file(filename, json)
     file = File.new(filename, 'w')
@@ -85,5 +93,4 @@ module SaveRetrive
     file.puts(json)
     file.close
   end
-
 end
