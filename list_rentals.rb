@@ -7,7 +7,7 @@ class ListRentals
   def display
     print('Id of the person: ')
     id = gets.chomp.to_i
-    person = @people.filter { |p| p.id == id }.first
-    puts(person.rentals.map { |rental| "Date: #{rental.date}, Book: #{rental.book.title}, by #{rental.book.author}" })
+    person = @rentals.filter { |p| p.person.id == id }.first
+    puts("Date: #{person.date}, Book: #{person.book.title}, by #{person.book.author}")
   end
 end
