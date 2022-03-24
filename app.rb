@@ -18,7 +18,7 @@ class App
   include SaveRetrive
 
   def initialize
-    @people = []
+    @people = retrieve_people
     @books = retrieve_books
     @rentals = retrieve_rentals
   end
