@@ -1,5 +1,4 @@
 require 'json'
-
 module SaveRetrive
   def retrieve_books
     json = File.read('data/books.json')
